@@ -3,7 +3,7 @@ package br.com.leonardo.atividade_elotech.service;
 import br.com.leonardo.atividade_elotech.converter.UsuarioConverter;
 import br.com.leonardo.atividade_elotech.dto.UsuarioDTO;
 import br.com.leonardo.atividade_elotech.entity.Usuario;
-import br.com.leonardo.atividade_elotech.exception.UsuarioNaoEcontradoException;
+import br.com.leonardo.atividade_elotech.exception.UsuarioNaoEncontradoException;
 import br.com.leonardo.atividade_elotech.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +28,7 @@ public class UsuarioService {
 
     public UsuarioDTO localizarPeloId(Long id){
         Usuario usuario = usuarioRepository.findById(id)
-                .orElseThrow(()-> new UsuarioNaoEcontradoException());
+                .orElseThrow(()-> new UsuarioNaoEncontradoException());
 
         return usuarioConverter.toDto(usuario);
     }
@@ -40,7 +40,7 @@ public class UsuarioService {
 
     public UsuarioDTO atualizarUsuario(Long id, UsuarioDTO usuarioDTO){
         Usuario usuario = usuarioRepository.findById(id)
-                .orElseThrow(()-> new UsuarioNaoEcontradoException());
+                .orElseThrow(()-> new UsuarioNaoEncontradoException());
 
         usuario.setNome(usuarioDTO.getNome());
         usuario.setEmail(usuarioDTO.getEmail());

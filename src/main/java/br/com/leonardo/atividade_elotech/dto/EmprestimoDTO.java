@@ -1,6 +1,8 @@
 package br.com.leonardo.atividade_elotech.dto;
 
-import br.com.leonardo.atividade_elotech.enums.Categoria;
+import br.com.leonardo.atividade_elotech.entity.Livro;
+import br.com.leonardo.atividade_elotech.entity.Usuario;
+import br.com.leonardo.atividade_elotech.enums.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,18 +17,16 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class LivroDTO {
+public class EmprestimoDTO {
 
     private long id;
 
-    private String titulo;
+    private UsuarioDTO usuarioDTO;
 
-    private String autor;
+    private LivroDTO livroDTO;
 
-    private String isbn;
+    private LocalDate dataEmprestimo;
 
-    private LocalDate dataPublicacao;
-
-    private Categoria categoria;
+    private LocalDate dataDevolucao;
 
 }

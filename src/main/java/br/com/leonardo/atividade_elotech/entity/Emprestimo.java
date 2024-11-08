@@ -25,18 +25,18 @@ public class Emprestimo {
     private long id;
 
     @ManyToOne
-    @JoinColumn(name = "usuario_id")
+    @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
 
     @ManyToOne
-    @JoinColumn(name = "livro_id")
+    @JoinColumn(name = "livro_id", nullable = false)
     private Livro livro;
 
     @Column(name = "data_emprestimo", nullable = false)
     @Temporal(TemporalType.DATE)
     private LocalDate dataEmprestimo;
 
-    @Column(name = "data_devolucao", nullable = false)
+    @Column(name = "data_devolucao")
     @Temporal(TemporalType.DATE)
     private LocalDate dataDevolucao;
 
