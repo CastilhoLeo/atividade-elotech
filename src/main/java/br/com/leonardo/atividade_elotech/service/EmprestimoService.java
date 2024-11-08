@@ -52,8 +52,13 @@ public class EmprestimoService {
         return emprestimoConverter.toDto(emprestimoRepository.save(emprestimo));
     }
 
-//    public EmprestimoDTO devolverEmprestimo(Long id, LocalDate dataDevolucao){
-//        Emprestimo emprestimo = emprestimoRepository.findById(id)
-//                .orElseThrow(()-> new EmprestimoNaoEncontradoException());
-//    }
+    public EmprestimoDTO devolverEmprestimo(Long id, LocalDate dataDevolucao){
+        Emprestimo emprestimo = emprestimoRepository.findById(id)
+                .orElseThrow(()-> new EmprestimoNaoEncontradoException());
+
+        emprestimo.setDataDevolucao(dataDevolucao);
+        emprestimo.setStatus(Status.DEVOLVIDO);
+
+        return emprestimoConverter.toDto(emprestimoRepository.save(emprestimo));
+    }
 }

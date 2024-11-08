@@ -3,7 +3,7 @@ package br.com.leonardo.atividade_elotech.enums;
 public enum Status {
 
     EMPRESTADO(1, "Emprestado"),
-    DISPONIVEL(2, "Disponivel");
+    DEVOLVIDO(2, "Devolvido");
 
     private String status;
     private int codStatus;
