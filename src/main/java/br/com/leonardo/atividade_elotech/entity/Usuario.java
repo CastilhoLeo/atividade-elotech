@@ -2,6 +2,7 @@ package br.com.leonardo.atividade_elotech.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -22,7 +23,7 @@ import java.util.List;
 public class Usuario {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private long id;
 
@@ -38,6 +39,7 @@ public class Usuario {
     private LocalDate dataCadastro;
 
     @Column(name = "telefone", nullable = false)
+    @Size(min = 11, max = 11, message = "Numero de telefone inválido!")
     private String telefone;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)

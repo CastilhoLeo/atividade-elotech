@@ -2,9 +2,9 @@ package br.com.leonardo.atividade_elotech.enums;
 
 public enum Categoria {
 
-    COMEDIA(1, "Masculino"),
+    AVENTURA(1, "Aventura"),
     ROMANCE(2, "Romance"),
-    DRAMA(3, "Drama");
+    FICCAO(3, "Ficção");
 
     private String categoria;
     private int codCategoria;

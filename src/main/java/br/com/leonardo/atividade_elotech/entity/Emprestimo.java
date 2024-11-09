@@ -20,7 +20,7 @@ import java.time.LocalDate;
 public class Emprestimo {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private long id;
 
@@ -41,7 +41,7 @@ public class Emprestimo {
     private LocalDate dataDevolucao;
 
     @Column(name = "status", nullable = false)
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private Status status;
 
 }

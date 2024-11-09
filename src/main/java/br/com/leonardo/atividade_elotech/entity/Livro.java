@@ -20,7 +20,7 @@ import java.util.List;
 public class Livro {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private long id;
 
@@ -30,7 +30,7 @@ public class Livro {
     @Column(name = "autor", nullable = false)
     private String autor;
 
-    @Column(name = "isbn", nullable = false)
+    @Column(name = "isbn", nullable = false, unique = true)
     private String isbn;
 
     @Column(name = "data_publicacao", nullable = false)
@@ -38,7 +38,7 @@ public class Livro {
     private LocalDate dataPublicacao;
 
     @Column(name = "categoria", nullable = false)
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private Categoria categoria;
 
     @OneToMany(mappedBy = "livro", cascade = CascadeType.ALL, fetch = FetchType.EAGER)

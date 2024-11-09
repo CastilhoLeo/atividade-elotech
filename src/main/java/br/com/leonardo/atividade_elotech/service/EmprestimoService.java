@@ -2,6 +2,7 @@ package br.com.leonardo.atividade_elotech.service;
 
 import br.com.leonardo.atividade_elotech.converter.EmprestimoConverter;
 import br.com.leonardo.atividade_elotech.dto.EmprestimoDTO;
+import br.com.leonardo.atividade_elotech.dto.RequestDevolucaoDTO;
 import br.com.leonardo.atividade_elotech.dto.RequestEmprestimoDTO;
 import br.com.leonardo.atividade_elotech.entity.Emprestimo;
 import br.com.leonardo.atividade_elotech.entity.Livro;
@@ -52,11 +53,11 @@ public class EmprestimoService {
         return emprestimoConverter.toDto(emprestimoRepository.save(emprestimo));
     }
 
-    public EmprestimoDTO devolverEmprestimo(Long id, LocalDate dataDevolucao){
+    public EmprestimoDTO devolverEmprestimo(Long id, RequestDevolucaoDTO requestDevolucaoDTO){
         Emprestimo emprestimo = emprestimoRepository.findById(id)
                 .orElseThrow(()-> new EmprestimoNaoEncontradoException());
 
-        emprestimo.setDataDevolucao(dataDevolucao);
+        emprestimo.setDataDevolucao(requestDevolucaoDTO.getDataDevolucao());
         emprestimo.setStatus(Status.DEVOLVIDO);
 
         return emprestimoConverter.toDto(emprestimoRepository.save(emprestimo));

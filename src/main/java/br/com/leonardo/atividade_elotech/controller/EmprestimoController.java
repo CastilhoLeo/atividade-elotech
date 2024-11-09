@@ -1,6 +1,7 @@
 package br.com.leonardo.atividade_elotech.controller;
 
 import br.com.leonardo.atividade_elotech.dto.EmprestimoDTO;
+import br.com.leonardo.atividade_elotech.dto.RequestDevolucaoDTO;
 import br.com.leonardo.atividade_elotech.dto.RequestEmprestimoDTO;
 import br.com.leonardo.atividade_elotech.service.EmprestimoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import java.time.LocalDate;
 
 @Controller
 @RequestMapping("/emprestimo")
+@CrossOrigin(origins = "*")
 public class EmprestimoController {
 
     @Autowired
@@ -22,8 +24,9 @@ public class EmprestimoController {
         return ResponseEntity.ok().body(emprestimoService.cadastrarEmprestimo(request));
     }
 
-    @PutMapping("{id}")
-    public ResponseEntity<EmprestimoDTO> devolverEmprestimo(@PathVariable Long id, @RequestBody LocalDate dataDevolucao) {
-        return ResponseEntity.ok().body(emprestimoService.devolverEmprestimo(id, dataDevolucao));
+    @PutMapping("/{id}")
+    public ResponseEntity<EmprestimoDTO> devolverEmprestimo(@PathVariable Long id, @RequestBody RequestDevolucaoDTO requestDevolucaoDTO) {
+        System.out.println("EmprestimoDTO recebido: " + requestDevolucaoDTO);
+        return ResponseEntity.ok().body(emprestimoService.devolverEmprestimo(id, requestDevolucaoDTO));
     }
 }
