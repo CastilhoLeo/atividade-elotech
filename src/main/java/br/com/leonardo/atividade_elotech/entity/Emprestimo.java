@@ -36,7 +36,7 @@ public class Emprestimo {
     @Temporal(TemporalType.DATE)
     private LocalDate dataEmprestimo;
 
-    @Column(name = "data_devolucao")
+    @Column(name = "data_devolucao", nullable = false)
     @Temporal(TemporalType.DATE)
     private LocalDate dataDevolucao;
 

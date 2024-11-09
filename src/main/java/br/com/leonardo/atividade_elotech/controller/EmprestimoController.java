@@ -19,14 +19,16 @@ public class EmprestimoController {
     @Autowired
     private EmprestimoService emprestimoService;
 
+
     @PostMapping
     public ResponseEntity<EmprestimoDTO> cadastrarEmprestimo(@RequestBody RequestEmprestimoDTO request){
+
+        System.out.println(request.getEmprestimoDTO().getDataDevolucao());
         return ResponseEntity.ok().body(emprestimoService.cadastrarEmprestimo(request));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<EmprestimoDTO> devolverEmprestimo(@PathVariable Long id, @RequestBody RequestDevolucaoDTO requestDevolucaoDTO) {
-        System.out.println("EmprestimoDTO recebido: " + requestDevolucaoDTO);
-        return ResponseEntity.ok().body(emprestimoService.devolverEmprestimo(id, requestDevolucaoDTO));
+    public ResponseEntity<EmprestimoDTO> devolverEmprestimo(@PathVariable Long id, @RequestBody RequestDevolucaoDTO request) {
+        return ResponseEntity.ok().body(emprestimoService.devolverEmprestimo(id, request));
     }
 }

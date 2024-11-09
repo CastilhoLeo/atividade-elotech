@@ -26,23 +26,34 @@ public class RecomendacaoLivroService {
     private LivroConverter livroConverter;
 
     public List<LivroDTO> recomendacoesDoUsuario(Long usuarioId){
-        List<Emprestimo> emprestimos = emprestimoRepository.findByUsuarioId(usuarioId);
+        List<Emprestimo> emprestimosDoUsuario = emprestimoRepository.findByUsuarioId(usuarioId);
 
-        List<Categoria> categorias = emprestimos
+        List<Livro> livrosDoUsuario = emprestimosDoUsuario
                 .stream()
-                .map(e->e.getLivro().getCategoria())
-                .distinct()
+                .map(e->e.getLivro()).toList();
+
+        List<Categoria> categorias = livrosDoUsuario.stream().map(e->e.getCategoria()).distinct()
                 .toList();
 
-        return livrosDaCategoria(categorias);
+        List<Livro> livrosRecomendados = livrosDaCategoria(categorias);
 
+        List<Livro> livrosRecomendadosFiltrado = retiraLivrosJaEmprestados(livrosDoUsuario, livrosRecomendados);
+
+        return livrosRecomendadosFiltrado.stream().map(l->livroConverter.toDto(l)).toList();
     }
 
-    private List<LivroDTO> livrosDaCategoria(List<Categoria> categorias){
+    private List<Livro> livrosDaCategoria(List<Categoria> categorias){
 
         List<Livro> livros = livroRepository.findByCategoriaIn(categorias);
 
-        return livros.stream().map(e->livroConverter.toDto(e)).toList();
+        return livros;
+    }
+
+    private List<Livro> retiraLivrosJaEmprestados(List<Livro> livrosDoUsuario, List<Livro> livrosRecomendados){
+
+        livrosRecomendados.removeAll(livrosDoUsuario);
+
+        return livrosRecomendados;
     }
 
 

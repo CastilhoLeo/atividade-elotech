@@ -1,8 +1,7 @@
 package br.com.leonardo.atividade_elotech.exception.exceptionConfig;
 
-import br.com.leonardo.atividade_elotech.exception.EmprestimoNaoEncontradoException;
-import br.com.leonardo.atividade_elotech.exception.LivroNaoEncontradoException;
-import br.com.leonardo.atividade_elotech.exception.UsuarioNaoEncontradoException;
+import br.com.leonardo.atividade_elotech.exception.*;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -29,6 +28,24 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<ErrorMessage> emprestimoNaoEncontrado (EmprestimoNaoEncontradoException emprestimoNaoEncontradoException){
         ErrorMessage errorMessage = new ErrorMessage(HttpStatus.NOT_FOUND, emprestimoNaoEncontradoException.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
+    }
+
+    @ExceptionHandler(DataDeDevolucaoException.class)
+    public ResponseEntity<ErrorMessage> DataDeDevolucaoException (DataDeDevolucaoException dataDeDevolucaoException){
+        ErrorMessage errorMessage = new ErrorMessage(HttpStatus.BAD_REQUEST, dataDeDevolucaoException.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
+    }
+
+    @ExceptionHandler(LivroIndisponivelException.class)
+    public ResponseEntity<ErrorMessage> livroIndisponivelException (LivroIndisponivelException livroIndisponivelException){
+        ErrorMessage errorMessage = new ErrorMessage(HttpStatus.BAD_REQUEST, livroIndisponivelException.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<ErrorMessage> DataIntegrityViolation (DataIntegrityViolationException dataIntegrityViolationException){
+        ErrorMessage errorMessage = new ErrorMessage(HttpStatus.BAD_REQUEST, dataIntegrityViolationException.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
     }
 
 }

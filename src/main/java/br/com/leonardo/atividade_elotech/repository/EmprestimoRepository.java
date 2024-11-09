@@ -11,4 +11,6 @@ public interface EmprestimoRepository extends JpaRepository<Emprestimo, Long>, J
 
     List<Emprestimo> findByUsuarioId(Long id);
 
+    List<Emprestimo> findByLivroId(Long id);
+
 }

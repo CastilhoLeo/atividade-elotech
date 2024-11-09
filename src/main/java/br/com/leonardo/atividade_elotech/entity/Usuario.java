@@ -42,7 +42,7 @@ public class Usuario {
     @Size(min = 11, max = 11, message = "Numero de telefone inválido!")
     private String telefone;
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Emprestimo> emprestimo = new ArrayList<>();
 
 }
