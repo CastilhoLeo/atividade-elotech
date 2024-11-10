@@ -36,7 +36,7 @@ public class Emprestimo {
     @Temporal(TemporalType.DATE)
     private LocalDate dataEmprestimo;
 
-    @Column(name = "data_devolucao", nullable = false)
+    @Column(name = "data_devolucao") // Poderá ser null devido a não ter data de devolução no momento do cadastro
     @Temporal(TemporalType.DATE)
     private LocalDate dataDevolucao;
 

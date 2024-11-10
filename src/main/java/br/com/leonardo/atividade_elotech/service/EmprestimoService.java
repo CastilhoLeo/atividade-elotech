@@ -61,24 +61,28 @@ public class EmprestimoService {
             emprestimo.setLivro(livro);
             emprestimo.setStatus(Status.EMPRESTADO);
 
-            if (request.getEmprestimoDTO().getDataDevolucao().isAfter(emprestimo.getDataEmprestimo())) {
-                emprestimo.setDataDevolucao(request.getEmprestimoDTO().getDataDevolucao());
-            } else {
-                throw new DataDeDevolucaoException();
-            }
 
             return emprestimoConverter.toDto(emprestimoRepository.save(emprestimo));
 
     }
 
     public EmprestimoDTO devolverEmprestimo(Long id, RequestDevolucaoDTO requestDevolucaoDTO){
+
         Emprestimo emprestimo = emprestimoRepository.findById(id)
                 .orElseThrow(()-> new EmprestimoNaoEncontradoException());
 
+
         emprestimo.setStatus(requestDevolucaoDTO.getStatus());
+        if (requestDevolucaoDTO.getDataDevolucao().isAfter(emprestimo.getDataEmprestimo())) {
+            emprestimo.setDataDevolucao(requestDevolucaoDTO.getDataDevolucao());
+        } else {
+            throw new DataDeDevolucaoException();
+        }
+
 
         return emprestimoConverter.toDto(emprestimoRepository.save(emprestimo));
     }
+
 
     public boolean livroDisponivel(Long livroId){
 

@@ -57,6 +57,7 @@ public class DTOBuilder {
     public static RequestDevolucaoDTO requestDevolucaoDTO(){
 
         return new RequestDevolucaoDTO(
-                Status.DEVOLVIDO);
+                Status.DEVOLVIDO,
+                LocalDate.of(2024,11,11));
     }
 }

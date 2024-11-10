@@ -44,7 +44,7 @@ public class EntityBuilder {
                 EntityBuilder.usuario(),
                 EntityBuilder.livro(),
                 LocalDate.of(2024,11,9),
-                LocalDate.of(2024,11,10),
+                null,
                 Status.DEVOLVIDO);
     }
 
