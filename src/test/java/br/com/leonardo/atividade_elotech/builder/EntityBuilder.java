@@ -45,7 +45,7 @@ public class EntityBuilder {
                 EntityBuilder.livro(),
                 LocalDate.of(2024,11,9),
                 LocalDate.of(2024,11,10),
-                Status.EMPRESTADO);
+                Status.DEVOLVIDO);
     }
 
 }

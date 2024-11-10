@@ -20,7 +20,7 @@ public class LivroConverterTest {
     private LivroConverter livroConverter;
 
     @Test
-    public void deveConverterLivroEntityEmLivroDTO(){
+    public void toDto_deveConverterLivroEntityEmLivroDTO(){
 
         Livro livro = EntityBuilder.livro();
 
@@ -37,7 +37,7 @@ public class LivroConverterTest {
     }
 
     @Test
-    public void deveConverterLivroDTOEmLivroEntity(){
+    public void toEntity_deveConverterLivroDTOEmLivroEntity(){
 
         LivroDTO livroDTO = DTOBuilder.livroDTO();
 

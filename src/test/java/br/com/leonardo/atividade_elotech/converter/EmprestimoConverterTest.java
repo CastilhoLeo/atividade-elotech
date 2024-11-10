@@ -18,7 +18,7 @@ public class EmprestimoConverterTest {
     private EmprestimoConverter emprestimoConverter;
 
     @Test
-    public void deveConverterEmprestimoEntityEmEmprestimoDTO(){
+    public void toDto_deveConverterEmprestimoEntityEmEmprestimoDTO(){
 
         Emprestimo emprestimo = EntityBuilder.emprestimo();
 
@@ -36,7 +36,7 @@ public class EmprestimoConverterTest {
 
 
     @Test
-    public void deveConverterEmprestimoDTOEmEmprestimoEntity(){
+    public void toEntity_deveConverterEmprestimoDTOEmEmprestimoEntity(){
 
         EmprestimoDTO emprestimoDTO = DTOBuilder.emprestimoDTO();
 

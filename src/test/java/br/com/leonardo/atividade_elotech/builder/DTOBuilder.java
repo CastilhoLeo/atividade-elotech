@@ -1,8 +1,6 @@
 package br.com.leonardo.atividade_elotech.builder;
 
-import br.com.leonardo.atividade_elotech.dto.EmprestimoDTO;
-import br.com.leonardo.atividade_elotech.dto.LivroDTO;
-import br.com.leonardo.atividade_elotech.dto.UsuarioDTO;
+import br.com.leonardo.atividade_elotech.dto.*;
 import br.com.leonardo.atividade_elotech.entity.Emprestimo;
 import br.com.leonardo.atividade_elotech.entity.Livro;
 import br.com.leonardo.atividade_elotech.enums.Categoria;
@@ -41,5 +39,24 @@ public class DTOBuilder {
                 DTOBuilder.livroDTO(),
                 LocalDate.of(2024,11,9),
                 LocalDate.of(2024,11,10));
+    }
+
+    public static RequestEmprestimoDTO requestEmprestimoDTO(){
+
+        return new RequestEmprestimoDTO(
+                1L,
+                1L,
+                new EmprestimoDTO(1L,
+                        usuarioDTO(),
+                        livroDTO(),
+                        LocalDate.of(2024,11,9),
+                        LocalDate.of(2024,11,10))
+                );
+    }
+
+    public static RequestDevolucaoDTO requestDevolucaoDTO(){
+
+        return new RequestDevolucaoDTO(
+                Status.DEVOLVIDO);
     }
 }

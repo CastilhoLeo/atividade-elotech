@@ -20,7 +20,7 @@ public class UsuarioConverterTest {
 
 
     @Test
-    public void deveConverterUsuarioEntityEmUsuarioDTO(){
+    public void toDto_deveConverterUsuarioEntityEmUsuarioDTO(){
 
         Usuario usuario = EntityBuilder.usuario();
 
@@ -37,7 +37,7 @@ public class UsuarioConverterTest {
     }
 
     @Test
-    public void deveConverterUmUsuarioDTOEmUsuarioEntity(){
+    public void toEntity_deveConverterUmUsuarioDTOEmUsuarioEntity(){
 
         UsuarioDTO usuarioDTO = DTOBuilder.usuarioDTO();
 
