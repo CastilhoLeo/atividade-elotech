@@ -15,7 +15,7 @@ public class DTOBuilder {
         return new UsuarioDTO(
                 1L,
                 "Leonardo",
-                "Leonardo@email.com",
+                "leonardo@email.com",
                 LocalDate.of(2024,11,9),
                 "44998240563");
     }
