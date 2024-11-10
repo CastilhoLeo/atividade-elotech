@@ -13,10 +13,13 @@ import br.com.leonardo.atividade_elotech.repository.EmprestimoRepository;
 import br.com.leonardo.atividade_elotech.repository.LivroRepository;
 import br.com.leonardo.atividade_elotech.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class EmprestimoService {
@@ -32,6 +35,14 @@ public class EmprestimoService {
 
     @Autowired
     private EmprestimoConverter emprestimoConverter;
+
+
+    public Page<EmprestimoDTO> pesquisarTodos(Pageable pageable){
+
+        Page<Emprestimo> todosEmprestimos = emprestimoRepository.findAll(pageable);
+
+        return todosEmprestimos.map(e->emprestimoConverter.toDto(e));
+    }
 
 
     public EmprestimoDTO cadastrarEmprestimo(RequestEmprestimoDTO request){

@@ -19,14 +19,16 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.*;
 
 @ExtendWith(MockitoExtension.class)
 @ActiveProfiles("test")
@@ -46,6 +48,25 @@ public class EmprestimoServiceTest {
 
     @InjectMocks
     private EmprestimoService emprestimoService;
+
+    private Pageable pageable;
+
+    @Test
+    public void pesquisarTodos_deveRetornarTodosOsEmprestimos(){
+
+
+        Page<Emprestimo> emprestimos = new PageImpl<>(List.of(EntityBuilder.emprestimo()));
+        EmprestimoDTO emprestimoDTO = DTOBuilder.emprestimoDTO();
+
+        Mockito.when(emprestimoRepository.findAll(pageable)).thenReturn(emprestimos);
+        Mockito.when(emprestimoConverter.toDto(any(Emprestimo.class))).thenReturn(emprestimoDTO);
+
+        Page<EmprestimoDTO> emprestimosDTO = emprestimoService.pesquisarTodos(pageable);
+
+        Mockito.verify(emprestimoRepository, Mockito.times(1)).findAll(pageable);
+        Assertions.assertNotNull(emprestimosDTO);
+    }
+
 
 
     @Test
