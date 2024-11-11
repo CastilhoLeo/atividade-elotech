@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 import java.util.List;
 
-public interface EmprestimoRepository extends JpaRepository<Emprestimo, Long>, JpaSpecificationExecutor<Emprestimo> {
+public interface EmprestimoRepository extends JpaRepository<Emprestimo, Long> {
 
     List<Emprestimo> findByUsuarioId(Long id);
 

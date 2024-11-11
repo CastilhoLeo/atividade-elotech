@@ -8,6 +8,9 @@ import br.com.leonardo.atividade_elotech.enums.Status;
 
 import java.time.LocalDate;
 
+/**
+ * Classe criada com métodos static para criação dos objetos DTO utilizados nos testes unitários
+ */
 public class DTOBuilder {
 
     public static UsuarioDTO usuarioDTO(){

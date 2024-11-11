@@ -44,7 +44,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<ErrorMessage> DataIntegrityViolation (DataIntegrityViolationException dataIntegrityViolationException){
-        ErrorMessage errorMessage = new ErrorMessage(HttpStatus.BAD_REQUEST, dataIntegrityViolationException.getMessage());
+        ErrorMessage errorMessage = new ErrorMessage(HttpStatus.BAD_REQUEST, "Dados inválidos ou incompletos!");
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
     }
 

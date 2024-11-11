@@ -10,6 +10,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe criada com métodos static para criação dos objetos ENTITY utilizados nos testes unitários
+ */
 public class EntityBuilder {
 
     public static Usuario usuario(){
