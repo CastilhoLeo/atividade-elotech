@@ -1,24 +1,36 @@
 <h1 align = 'center'>Gestão de biblioteca</h1>
 
 
-<h2 align = 'center'>Descrição do projeto</h2>
-<p align = 'center'>Api desenvolvida para desafio técnico da Elotech</p>
- <p> Nesta aplicação será possível cadastrar usuarios, livros e empréstimos dos livros. Também há a funcionalidade de livros recomendados com base no histórico de emprestimos do usuário selecionado </p>
+<h2 align = 'center'>Api desenvolvida para desafio técnico da Elotech</h2>
+<p> Nesta aplicação será possível cadastrar usuarios, livros e empréstimos dos livros. Também há a funcionalidade de livros recomendados com base no histórico de emprestimos do usuário selecionado </p>
 
 <div align = 'center'>
-<h2 align ='center'>Ferramentas utilizadas</h2>
-<h3 align ='center'>Back-end</h3>
+<h2 align ='center'>Configurações necessárias</h2>
+
+ <h3 align ='center'>Clonar repositório:</h3>
+<p align ='center'>https://github.com/CastilhoLeo/atividade-elotech</p>
+
+<br>
+
+ <h3 align ='center'>Requisitos:</h3>
+ <p align ='center'>Java 21</p>
+ <p align ='center'>PostgreSQL</p>
+ <p align ='center'>Maven</p>
+
+ <br>
+ 
+<h3 align ='center'>Variáveis de ambiente:</h3>
+<p align ='center'>DB_URL: Url do banco de dados (exemplo: jdbc:postgresql://localhost:5432/seubancodedados )</p>
+<p align ='center'>DB_USER: Nome do usuário para acesso ao banco de dados</p>
+<p align ='center'>DB_PASSWORD: Senha para acesso ao banco de dados</p>
+<p align ='center'>API_KEY: Chave para requisições na API Google Books</p>
+ 
+<br>
 
 
 
-<h3 align = 'center'> Front-end</h3>
 
 
-<h3 align = 'center'> Deploy</h3>
-
-
-
-<h3 align = 'center'> Versionamento</h3>
 
 
 
