@@ -27,12 +27,12 @@
  
 <br>
 <h3 align ='center'>Documentação:</h3>
-<a href = "http://localhost:63342/atividade-elotech/docs/DocumentacaoMain/index.html" target="Main">Documentação MAIN </a>
+<p> Documentação MAIN  - /atividade-elotech/docs/DocumentacaoMain/index.html</p>
 <br>
-<a href = "http://localhost:63342/atividade-elotech/docs/DocumentacaoTest/index.html" target="Main">Documentação TESTES </a>
+<p> Documentação TESTES  - /atividade-elotech/docs/DocumentacaoTest/index.html</p>
 
-
-
+<h3 align ='center'>Observações</h3>
+<p>Desenvolvido todos os critérios obrigatórios do teste e o critério opcional de integração com a API Google Books desenvolvida parcialmente, devido ao tempo limitado</p>
 
 
 
