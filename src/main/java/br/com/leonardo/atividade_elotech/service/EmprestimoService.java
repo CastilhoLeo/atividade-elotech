@@ -17,9 +17,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class EmprestimoService {
@@ -71,6 +69,9 @@ public class EmprestimoService {
         Emprestimo emprestimo = emprestimoRepository.findById(id)
                 .orElseThrow(()-> new EmprestimoNaoEncontradoException());
 
+        if(emprestimo.getStatus().equals(Status.DEVOLVIDO)){
+            throw new EmprestimoJaDevolvidoException();
+        }
 
         emprestimo.setStatus(requestDevolucaoDTO.getStatus());
         if (requestDevolucaoDTO.getDataDevolucao().isAfter(emprestimo.getDataEmprestimo())) {

@@ -42,6 +42,12 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
     }
 
+    @ExceptionHandler(EmprestimoJaDevolvidoException.class)
+    public ResponseEntity<ErrorMessage> emprestimoJaDevolvidoException (EmprestimoJaDevolvidoException emprestimoJaDevolvidoException){
+        ErrorMessage errorMessage = new ErrorMessage(HttpStatus.BAD_REQUEST, emprestimoJaDevolvidoException.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
+    }
+
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<ErrorMessage> DataIntegrityViolation (DataIntegrityViolationException dataIntegrityViolationException){
         ErrorMessage errorMessage = new ErrorMessage(HttpStatus.BAD_REQUEST, "Dados inválidos ou incompletos!");
