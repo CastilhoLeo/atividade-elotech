@@ -1,6 +1,7 @@
 package br.com.leonardo.atividade_elotech.dto;
 
 import br.com.leonardo.atividade_elotech.enums.Categoria;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

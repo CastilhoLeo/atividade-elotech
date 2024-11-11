@@ -18,4 +18,5 @@ public class VolumeInfo {
     private List<String> authors;
 
     private List<IndustryIdentifier> industryIdentifiers;
+
 }
