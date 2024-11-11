@@ -26,7 +26,10 @@
 <p align ='center'>API_KEY: Chave para requisições na API Google Books</p>
  
 <br>
-
+<h3 align ='center'>Documentação:</h3>
+<a href = "http://localhost:63342/atividade-elotech/docs/DocumentacaoMain/index.html" target="Main">Documentação MAIN </a>
+<br>
+<a href = "http://localhost:63342/atividade-elotech/docs/DocumentacaoTest/index.html" target="Main">Documentação TESTES </a>
 
 
 
