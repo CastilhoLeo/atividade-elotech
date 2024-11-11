@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+/**
+ * Responsável gerênciar as exceptions lançadas durante tempo de execução
+ */
 
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {

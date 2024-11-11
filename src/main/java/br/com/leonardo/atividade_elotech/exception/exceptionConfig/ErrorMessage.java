@@ -4,6 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
 
+/**
+ * Modelo padrão de mensagem apresentada no response quando ocorrerem exceptions
+ */
+
 @Data
 @AllArgsConstructor
 public class ErrorMessage {

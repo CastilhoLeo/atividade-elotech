@@ -4,9 +4,13 @@ import br.com.leonardo.atividade_elotech.dto.LivroDTO;
 import br.com.leonardo.atividade_elotech.entity.Livro;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+/**
+ * Realiza a conversão entre as classes Livro e LivroDTO
+ */
+
+@Component
 public class LivroConverter {
 
     @Autowired

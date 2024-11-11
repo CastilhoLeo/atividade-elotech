@@ -11,8 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.util.List;
+/**
+ * Controller das operações de cadastro, devolução e pesquisa dos empréstimos realizados
+ */
 
 @Controller
 @RequestMapping("/emprestimo")

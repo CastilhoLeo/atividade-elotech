@@ -1,5 +1,8 @@
 package br.com.leonardo.atividade_elotech.enums;
 
+/**
+ * Categorias dos livros
+ */
 public enum Categoria {
 
     AVENTURA("Aventura"),

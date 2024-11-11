@@ -7,6 +7,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * Controller das operações de cadastro, exclusão, pesquisa e atualização dos usuários
+ */
+
 @Controller
 @RequestMapping("/usuario")
 @CrossOrigin(origins = "*")

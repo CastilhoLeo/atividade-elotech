@@ -1,5 +1,8 @@
 package br.com.leonardo.atividade_elotech.enums;
 
+/**
+ * Status dos empréstimos (Emprestado ou Devolvido)
+ */
 public enum Status {
 
     EMPRESTADO("Emprestado"),
