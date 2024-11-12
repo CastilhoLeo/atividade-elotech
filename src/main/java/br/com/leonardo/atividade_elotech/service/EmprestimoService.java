@@ -19,6 +19,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Classe responsável pela implementação das regras ne negócio referente ao empréstimo dos livros
+ */
 @Service
 public class EmprestimoService {
 
@@ -54,6 +57,7 @@ public class EmprestimoService {
                     .orElseThrow(() -> new UsuarioNaoEncontradoException());
 
             Emprestimo emprestimo = new Emprestimo();
+
             emprestimo.setDataEmprestimo(request.getEmprestimoDTO().getDataEmprestimo());
             emprestimo.setUsuario(usuario);
             emprestimo.setLivro(livro);
@@ -69,14 +73,20 @@ public class EmprestimoService {
         Emprestimo emprestimo = emprestimoRepository.findById(id)
                 .orElseThrow(()-> new EmprestimoNaoEncontradoException());
 
-        if(emprestimo.getStatus().equals(Status.DEVOLVIDO)){
+        if(emprestimo.getStatus().equals(Status.DEVOLVIDO)){  // lógica que não permite devolver um livro já devolvido
             throw new EmprestimoJaDevolvidoException();
         }
 
-        emprestimo.setStatus(requestDevolucaoDTO.getStatus());
+        emprestimo.setStatus(requestDevolucaoDTO.getStatus());  // altera status para devolvido
+
+
+        // Lógica que não permite devolver livro com data igual ou inferior ao emprestimo
         if (requestDevolucaoDTO.getDataDevolucao().isAfter(emprestimo.getDataEmprestimo())) {
+
             emprestimo.setDataDevolucao(requestDevolucaoDTO.getDataDevolucao());
+
         } else {
+
             throw new DataDeDevolucaoException();
         }
 
@@ -85,18 +95,27 @@ public class EmprestimoService {
     }
 
 
+    /**
+     * Método que retorna true quando o livro não possui empréstimos com status "EMPRESTADO"
+     * @param livroId
+     * @return
+     */
     public boolean livroDisponivel(Long livroId){
 
         List<Emprestimo> emprestimos = emprestimoRepository.findByLivroId(livroId);
 
-        Boolean indisponivel = emprestimos
+
+        Boolean indisponivel = emprestimos              // retorna true se o livro estiver emprestado
                 .stream()
                 .map(e->e.getStatus())
                 .anyMatch(s-> s.equals(Status.EMPRESTADO));
 
-        if(emprestimos.isEmpty() || indisponivel==false){
+        if(emprestimos.isEmpty() || indisponivel==false){  // emprestimos é empty quando o livro nunca foi emprestado
+
             return true;
+
         }else{
+
             throw new LivroIndisponivelException();
         }
 

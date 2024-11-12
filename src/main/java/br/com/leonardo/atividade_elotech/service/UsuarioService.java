@@ -27,18 +27,22 @@ public class UsuarioService {
 
 
     public UsuarioDTO localizarPeloId(Long id){
+
         Usuario usuario = usuarioRepository.findById(id)
                 .orElseThrow(()-> new UsuarioNaoEncontradoException());
 
         return usuarioConverter.toDto(usuario);
     }
 
+
     public void deletarUsuario(Long id){
 
         usuarioRepository.deleteById(id);
     }
 
+
     public UsuarioDTO atualizarUsuario(Long id, UsuarioDTO usuarioDTO){
+
         Usuario usuario = usuarioRepository.findById(id)
                 .orElseThrow(()-> new UsuarioNaoEncontradoException());
 

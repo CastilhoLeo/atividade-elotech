@@ -8,6 +8,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+/**
+ * Classe que representa os campos selecionados para receber da Api GoogleBooks
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

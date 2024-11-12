@@ -1,5 +1,10 @@
 br.com.leonardo.atividade_elotech
 br.com.leonardo.atividade_elotech.client.apiResponse
+br.com.leonardo.atividade_elotech.client.config
+br.com.leonardo.atividade_elotech.client.controller
+br.com.leonardo.atividade_elotech.client.converter
+br.com.leonardo.atividade_elotech.client.service
+br.com.leonardo.atividade_elotech.client.service.external
 br.com.leonardo.atividade_elotech.config
 br.com.leonardo.atividade_elotech.controller
 br.com.leonardo.atividade_elotech.converter

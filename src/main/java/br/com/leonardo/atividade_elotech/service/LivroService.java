@@ -17,6 +17,7 @@ public class LivroService {
     @Autowired
     private LivroConverter livroConverter;
 
+
     public LivroDTO cadastrarLivro(LivroDTO livroDTO){
 
         Livro livro = livroConverter.toEntity(livroDTO);
@@ -26,6 +27,7 @@ public class LivroService {
 
 
     public LivroDTO localizarPeloId(Long id){
+
         Livro livro = livroRepository.findById(id)
                 .orElseThrow(()-> new LivroNaoEncontradoException());
 
@@ -37,9 +39,12 @@ public class LivroService {
         livroRepository.deleteById(id);
     }
 
+
     public LivroDTO atualizarLivro(Long id, LivroDTO livroDTO){
+
         Livro livro = livroRepository.findById(id)
                 .orElseThrow(()-> new LivroNaoEncontradoException());
+
 
         livro.setAutor(livroDTO.getAutor());
         livro.setIsbn(livroDTO.getIsbn());
