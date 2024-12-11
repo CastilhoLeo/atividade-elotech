@@ -8,6 +8,8 @@ import br.com.leonardo.atividade_elotech.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UsuarioService {
 
@@ -32,6 +34,22 @@ public class UsuarioService {
                 .orElseThrow(()-> new UsuarioNaoEncontradoException());
 
         return usuarioConverter.toDto(usuario);
+    }
+
+    public List<UsuarioDTO> localizarNome(String nome){
+
+        if(nome.equals("")){
+            List<Usuario> usuarios = usuarioRepository.findAll();
+            return usuarios.stream()
+                    .map((u)-> usuarioConverter.toDto(u))
+                    .toList();
+        } else{
+            List<Usuario> usuarios = usuarioRepository.findByNome(nome);
+            return usuarios.stream()
+                    .map((u)-> usuarioConverter.toDto(u))
+                    .toList();
+        }
+
     }
 
 

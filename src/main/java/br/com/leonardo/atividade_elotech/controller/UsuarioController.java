@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * Controller das operações de cadastro, exclusão, pesquisa e atualização dos usuários
  */
@@ -27,6 +29,11 @@ public class UsuarioController {
     @GetMapping("/{id}")
     public ResponseEntity<UsuarioDTO> localizarPeloId(@PathVariable Long id){
         return ResponseEntity.ok().body(usuarioService.localizarPeloId(id));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<UsuarioDTO>> localizarNome(@RequestParam String nome){
+        return ResponseEntity.ok().body(usuarioService.localizarNome(nome));
     }
 
     @DeleteMapping("/{id}")
