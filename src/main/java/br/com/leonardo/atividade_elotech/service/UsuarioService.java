@@ -38,17 +38,11 @@ public class UsuarioService {
 
     public List<UsuarioDTO> localizarNome(String nome){
 
-        if(nome.equals("")){
-            List<Usuario> usuarios = usuarioRepository.findAll();
+            List<Usuario> usuarios = usuarioRepository.findByNomeContaining(nome);
             return usuarios.stream()
                     .map((u)-> usuarioConverter.toDto(u))
                     .toList();
-        } else{
-            List<Usuario> usuarios = usuarioRepository.findByNome(nome);
-            return usuarios.stream()
-                    .map((u)-> usuarioConverter.toDto(u))
-                    .toList();
-        }
+
 
     }
 

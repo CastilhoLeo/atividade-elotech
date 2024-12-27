@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * Controller das operações de cadastro, exclusão, pesquisa e atualização dos livros
  */
@@ -18,6 +20,11 @@ public class LivroController {
 
     @Autowired
     private LivroService livroService;
+
+    @GetMapping
+    public ResponseEntity<List<LivroDTO>> pesquisaPeloTitulo (@RequestParam String titulo){
+        return ResponseEntity.ok().body(livroService.localizarPeloTitulo(titulo));
+    }
 
     @PostMapping
     public ResponseEntity<LivroDTO> cadastrarLivro(@RequestBody LivroDTO livroDTO){

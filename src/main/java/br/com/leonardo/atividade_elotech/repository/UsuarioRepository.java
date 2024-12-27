@@ -10,6 +10,5 @@ import java.util.List;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
-    @Query("select u from Usuario u where u.nome ilike %:nome%" )
-    List<Usuario> findByNome(String nome);
+    List<Usuario> findByNomeContaining(String nome);
 }

@@ -8,6 +8,8 @@ import br.com.leonardo.atividade_elotech.repository.LivroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class LivroService {
 
@@ -16,6 +18,16 @@ public class LivroService {
 
     @Autowired
     private LivroConverter livroConverter;
+
+    public List<LivroDTO> localizarPeloTitulo(String titulo){
+
+        List<Livro> livros = livroRepository.findByTituloContaining(titulo);
+
+        return livros.stream()
+                .map(livro->livroConverter.toDto(livro))
+                .toList();
+
+    }
 
 
     public LivroDTO cadastrarLivro(LivroDTO livroDTO){
