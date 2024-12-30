@@ -12,6 +12,6 @@ public interface LivroRepository extends JpaRepository<Livro, Long> {
 
     List<Livro> findByCategoriaIn (List<Categoria> categoria);
 
-    List<Livro> findByTituloContaining(String titulo);
+    List<Livro> findByTituloContainingIgnoreCase(String titulo);
 
 }

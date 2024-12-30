@@ -38,7 +38,7 @@ public class UsuarioService {
 
     public List<UsuarioDTO> localizarNome(String nome){
 
-            List<Usuario> usuarios = usuarioRepository.findByNomeContaining(nome);
+            List<Usuario> usuarios = usuarioRepository.findByNomeContainingIgnoreCase(nome);
             return usuarios.stream()
                     .map((u)-> usuarioConverter.toDto(u))
                     .toList();

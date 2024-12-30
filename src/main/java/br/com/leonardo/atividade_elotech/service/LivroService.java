@@ -21,7 +21,7 @@ public class LivroService {
 
     public List<LivroDTO> localizarPeloTitulo(String titulo){
 
-        List<Livro> livros = livroRepository.findByTituloContaining(titulo);
+        List<Livro> livros = livroRepository.findByTituloContainingIgnoreCase(titulo);
 
         return livros.stream()
                 .map(livro->livroConverter.toDto(livro))
