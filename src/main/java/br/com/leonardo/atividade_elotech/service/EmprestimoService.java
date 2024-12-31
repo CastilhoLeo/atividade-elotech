@@ -45,6 +45,11 @@ public class EmprestimoService {
         return todosEmprestimos.map(e->emprestimoConverter.toDto(e));
     }
 
+    public Page<EmprestimoDTO> pesquisaDinamicaEmprestimo(String usuario, String titulo, Pageable pageable){
+        Page<Emprestimo> emprestimos =  emprestimoRepository.findByUsuarioNomeContainingOrLivroTituloContaining(usuario, titulo, pageable);
+        return emprestimos.map(e->emprestimoConverter.toDto(e));
+    }
+
 
     public EmprestimoDTO cadastrarEmprestimo(RequestEmprestimoDTO request){
 

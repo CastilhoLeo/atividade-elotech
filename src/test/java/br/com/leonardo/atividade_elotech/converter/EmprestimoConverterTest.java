@@ -4,6 +4,7 @@ import br.com.leonardo.atividade_elotech.builder.DTOBuilder;
 import br.com.leonardo.atividade_elotech.builder.EntityBuilder;
 import br.com.leonardo.atividade_elotech.dto.EmprestimoDTO;
 import br.com.leonardo.atividade_elotech.entity.Emprestimo;
+import br.com.leonardo.atividade_elotech.enums.Status;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +50,7 @@ public class EmprestimoConverterTest {
         Assertions.assertEquals(emprestimoDTO.getUsuarioDTO(), DTOBuilder.usuarioDTO());
         Assertions.assertEquals(emprestimo.getDataEmprestimo(), emprestimoDTO.getDataEmprestimo());
         Assertions.assertEquals(emprestimo.getDataDevolucao(), emprestimoDTO.getDataDevolucao());
-        Assertions.assertEquals(emprestimo.getStatus(), null);
+        Assertions.assertEquals(emprestimo.getStatus(), Status.EMPRESTADO);
 
     }
 

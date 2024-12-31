@@ -1,5 +1,6 @@
 package br.com.leonardo.atividade_elotech.dto;
 
+import br.com.leonardo.atividade_elotech.enums.Status;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -22,5 +23,7 @@ public class EmprestimoDTO {
     private LocalDate dataEmprestimo;
 
     private LocalDate dataDevolucao;
+
+    private Status status;
 
 }

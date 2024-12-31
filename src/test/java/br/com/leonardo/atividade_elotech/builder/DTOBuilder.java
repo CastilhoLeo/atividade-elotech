@@ -41,7 +41,8 @@ public class DTOBuilder {
                 DTOBuilder.usuarioDTO(),
                 DTOBuilder.livroDTO(),
                 LocalDate.of(2024,11,9),
-                LocalDate.of(2024,11,10));
+                LocalDate.of(2024,11,10),
+                Status.EMPRESTADO);
     }
 
     public static RequestEmprestimoDTO requestEmprestimoDTO(){
@@ -53,7 +54,8 @@ public class DTOBuilder {
                         usuarioDTO(),
                         livroDTO(),
                         LocalDate.of(2024,11,9),
-                        LocalDate.of(2024,11,10))
+                        LocalDate.of(2024,11,10),
+                        Status.EMPRESTADO)
                 );
     }
 

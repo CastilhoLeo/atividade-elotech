@@ -25,10 +25,14 @@ public class EmprestimoController {
 
 
     @GetMapping
-    public ResponseEntity<Page<EmprestimoDTO>> pesquisarEmprestimo(Pageable pageable){
+    public ResponseEntity<Page<EmprestimoDTO>> pesquisarEmprestimo(
+            @RequestParam (required = false)String usuario,
+            @RequestParam (required = false)String titulo,
+            Pageable pageable){
 
-        return ResponseEntity.ok().body(emprestimoService.pesquisarTodos(pageable));
+        return ResponseEntity.ok().body(emprestimoService.pesquisaDinamicaEmprestimo(usuario, titulo, pageable));
     }
+
 
     @PostMapping
     public ResponseEntity<EmprestimoDTO> cadastrarEmprestimo(@RequestBody RequestEmprestimoDTO request){
