@@ -17,6 +17,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -63,7 +64,7 @@ public class EmprestimoService {
 
             Emprestimo emprestimo = new Emprestimo();
 
-            emprestimo.setDataEmprestimo(request.getEmprestimoDTO().getDataEmprestimo());
+            emprestimo.setDataEmprestimo(request.getDataEmprestimo());
             emprestimo.setUsuario(usuario);
             emprestimo.setLivro(livro);
             emprestimo.setStatus(Status.EMPRESTADO);
@@ -73,7 +74,7 @@ public class EmprestimoService {
 
     }
 
-    public EmprestimoDTO devolverEmprestimo(Long id, RequestDevolucaoDTO requestDevolucaoDTO){
+    public EmprestimoDTO devolverEmprestimo(Long id, LocalDate dataDevolucao){
 
         Emprestimo emprestimo = emprestimoRepository.findById(id)
                 .orElseThrow(()-> new EmprestimoNaoEncontradoException());
@@ -82,13 +83,13 @@ public class EmprestimoService {
             throw new EmprestimoJaDevolvidoException();
         }
 
-        emprestimo.setStatus(requestDevolucaoDTO.getStatus());  // altera status para devolvido
+        emprestimo.setStatus(Status.DEVOLVIDO);  // altera status para devolvido
 
 
         // Lógica que não permite devolver livro com data igual ou inferior ao emprestimo
-        if (requestDevolucaoDTO.getDataDevolucao().isAfter(emprestimo.getDataEmprestimo())) {
+        if (dataDevolucao.isAfter(emprestimo.getDataEmprestimo())) {
 
-            emprestimo.setDataDevolucao(requestDevolucaoDTO.getDataDevolucao());
+            emprestimo.setDataDevolucao(dataDevolucao);
 
         } else {
 

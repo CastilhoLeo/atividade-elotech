@@ -16,8 +16,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class RequestDevolucaoDTO {
 
-    private Status status;
-
     private LocalDate dataDevolucao;
 
 }

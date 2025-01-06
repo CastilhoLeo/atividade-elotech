@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+
 /**
  * Controller das operações de cadastro, devolução e pesquisa dos empréstimos realizados
  */
@@ -41,7 +43,7 @@ public class EmprestimoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<EmprestimoDTO> devolverEmprestimo(@PathVariable Long id, @RequestBody RequestDevolucaoDTO request) {
-        return ResponseEntity.ok().body(emprestimoService.devolverEmprestimo(id, request));
+    public ResponseEntity<EmprestimoDTO> devolverEmprestimo(@PathVariable Long id, @RequestBody LocalDate dataDevolucao) {
+        return ResponseEntity.ok().body(emprestimoService.devolverEmprestimo(id, dataDevolucao));
     }
 }

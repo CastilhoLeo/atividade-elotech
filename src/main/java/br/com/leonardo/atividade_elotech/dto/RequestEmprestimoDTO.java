@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 
 /**
  * Classe que recebe os dados necessários para realizar um empréstimo
@@ -18,5 +20,5 @@ public class RequestEmprestimoDTO {
 
     private long usuarioId;
 
-    private EmprestimoDTO EmprestimoDTO;
+    private LocalDate dataEmprestimo;
 }
