@@ -18,6 +18,5 @@ public enum Categoria {
     public String getCategoria(){
         return categoria;
     }
-
-
+    
 }

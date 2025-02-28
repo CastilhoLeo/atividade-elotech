@@ -143,7 +143,7 @@ public class EmprestimoServiceTest {
     public void devolverEmprestimo_deveAlterarStatusEAtualizarEmprestimo() {
 
         long emprestimoId = 1L;
-        RequestDevolucaoDTO requestDevolucaoDTO = DTOBuilder.requestDevolucaoDTO();
+        LocalDate dataDevolucao = LocalDate.of(2024,11,11);
         Emprestimo emprestimo = EntityBuilder.emprestimo();
         emprestimo.setStatus(Status.EMPRESTADO);
         EmprestimoDTO emprestimoDTO = DTOBuilder.emprestimoDTO();
@@ -154,7 +154,7 @@ public class EmprestimoServiceTest {
         Mockito.when(emprestimoRepository.save(any(Emprestimo.class))).thenReturn(emprestimo);
         ArgumentCaptor<Emprestimo> emprestimoCaptor = ArgumentCaptor.forClass(Emprestimo.class);
 
-        emprestimoService.devolverEmprestimo(emprestimoId, requestDevolucaoDTO);
+        emprestimoService.devolverEmprestimo(emprestimoId, dataDevolucao);
 
         Mockito.verify(emprestimoRepository, Mockito.times(1)).save(emprestimoCaptor.capture());
         Assertions.assertEquals(emprestimoCaptor.getValue().getStatus(), Status.DEVOLVIDO);
@@ -171,7 +171,7 @@ public class EmprestimoServiceTest {
         long emprestimoId = 1L;
 
         RequestDevolucaoDTO requestDevolucaoDTO = DTOBuilder.requestDevolucaoDTO();
-        requestDevolucaoDTO.setDataDevolucao(LocalDate.of(2024, 1, 1));
+        LocalDate dataDevolucao = LocalDate.of(2024, 1, 1);
         Emprestimo emprestimo = EntityBuilder.emprestimo();
         emprestimo.setStatus(Status.EMPRESTADO);
 
@@ -180,7 +180,7 @@ public class EmprestimoServiceTest {
 
 
         Assertions.assertThrows(DataDeDevolucaoException.class,
-                () -> emprestimoService.devolverEmprestimo(1L, requestDevolucaoDTO));
+                () -> emprestimoService.devolverEmprestimo(1L, dataDevolucao));
     }
 
     @Test
@@ -188,7 +188,7 @@ public class EmprestimoServiceTest {
 
         long emprestimoId = 1L;
 
-        RequestDevolucaoDTO requestDevolucaoDTO = DTOBuilder.requestDevolucaoDTO();
+        LocalDate dataDevolucao = LocalDate.of(2024, 11, 11);
         Emprestimo emprestimo = EntityBuilder.emprestimo(); // Status DEVOLVIDO
 
 
@@ -196,21 +196,21 @@ public class EmprestimoServiceTest {
 
 
         Assertions.assertThrows(EmprestimoJaDevolvidoException.class,
-                () -> emprestimoService.devolverEmprestimo(1L, requestDevolucaoDTO));
+                () -> emprestimoService.devolverEmprestimo(1L, dataDevolucao));
     }
 
     @Test
     public void devolverEmprestimo_deveRetornarEmprestimoNaoEncontradoException() {
 
         long emprestimoId = 1L;
-        RequestDevolucaoDTO requestDevolucaoDTO = DTOBuilder.requestDevolucaoDTO();
+        LocalDate dataDevolucao = LocalDate.of(2024, 11, 11);
 
 
         Mockito.when(emprestimoRepository.findById(anyLong())).thenReturn(Optional.empty());
 
 
         Assertions.assertThrows(EmprestimoNaoEncontradoException.class,
-                () -> emprestimoService.devolverEmprestimo(emprestimoId, requestDevolucaoDTO));
+                () -> emprestimoService.devolverEmprestimo(emprestimoId, dataDevolucao));
 
 
     }

@@ -23,6 +23,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -57,10 +58,12 @@ public class EmprestimoControllerTest {
         Page<EmprestimoDTO> emprestimos = new PageImpl<>(List.of(emprestimoDTO1, emprestimoDTO2));
 
 
-        Mockito.when(emprestimoService.pesquisarTodos(pageable)).thenReturn(emprestimos);
+        Mockito.when(emprestimoService.pesquisaDinamicaEmprestimo(any(String.class), any(String.class), any(Pageable.class))).thenReturn(emprestimos);
 
 
         mockMvc.perform(get("/emprestimo")
+                        .param("usuario", "teste")
+                        .param("titulo", "")
                         .param("page", "1")
                         .param("size", "20"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -130,26 +133,30 @@ public class EmprestimoControllerTest {
 
         long emprestimoId = 1L;
         EmprestimoDTO emprestimoDTO = DTOBuilder.emprestimoDTO();
-        RequestDevolucaoDTO requestDevolucaoDTO = DTOBuilder.requestDevolucaoDTO();
+        LocalDate dataDevolucao = LocalDate.of(2024,11,11);
 
-        Mockito.when(emprestimoService.devolverEmprestimo(anyLong(), any(RequestDevolucaoDTO.class))).thenReturn(emprestimoDTO);
+        Mockito.when(emprestimoService.devolverEmprestimo(1L, dataDevolucao)).thenReturn(emprestimoDTO);
 
         mockMvc.perform(put("/emprestimo/{id}", emprestimoId)
-                        .content(objectMapper.writeValueAsString(requestDevolucaoDTO))
+                        .content(objectMapper.writeValueAsString(dataDevolucao))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.usuarioDTO.id").value(1L))
                 .andExpect(jsonPath("$.usuarioDTO.nome").value("Leonardo"))
                 .andExpect(jsonPath("$.usuarioDTO.email").value("leonardo@email.com"))
                 .andExpect(jsonPath("$.usuarioDTO.dataCadastro").value("2024-11-09"))
-                .andExpect(jsonPath("$.usuarioDTO.telefone").value("44998240563")).andExpect(jsonPath("$.id").value(1L))
+                .andExpect(jsonPath("$.usuarioDTO.telefone").value("44998240563"))
+                .andExpect(jsonPath("$.id").value(1L))
                 .andExpect(jsonPath("$.livroDTO.titulo").value("Livro teste"))
                 .andExpect(jsonPath("$.livroDTO.autor").value("Autor teste"))
                 .andExpect(jsonPath("$.livroDTO.isbn").value("1234567891234"))
                 .andExpect(jsonPath("$.livroDTO.dataPublicacao").value("2020-10-10"))
                 .andExpect(jsonPath("$.livroDTO.categoria").value("AVENTURA"))
                 .andExpect(jsonPath("$.dataEmprestimo").value("2024-11-09"))
-                .andExpect(jsonPath("$.dataDevolucao").value("2024-11-10"));
+                .andExpect(jsonPath("$.dataDevolucao").value("2024-11-10"))
+                .andExpect(jsonPath("$.status").value("EMPRESTADO"));
+
+
     }
 
 }

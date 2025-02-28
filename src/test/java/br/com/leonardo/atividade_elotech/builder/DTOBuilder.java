@@ -50,19 +50,12 @@ public class DTOBuilder {
         return new RequestEmprestimoDTO(
                 1L,
                 1L,
-                new EmprestimoDTO(1L,
-                        usuarioDTO(),
-                        livroDTO(),
-                        LocalDate.of(2024,11,9),
-                        LocalDate.of(2024,11,10),
-                        Status.EMPRESTADO)
+                LocalDate.of(2024,11,9)
                 );
     }
 
     public static RequestDevolucaoDTO requestDevolucaoDTO(){
-
         return new RequestDevolucaoDTO(
-                Status.DEVOLVIDO,
                 LocalDate.of(2024,11,11));
     }
 }
