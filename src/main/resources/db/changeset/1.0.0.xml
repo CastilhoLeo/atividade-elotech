@@ -1,1 +1,81 @@
-<changeSet>id="1"  </changeSet>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+ http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+ http://www.liquibase.org/xml/ns/dbchangelog-ext
+ http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+<changeSet id="1" author="Leonardo">
+    <createTable tableName="usuario">
+        <column name="id" type="bigint" autoIncrement="true">
+            <constraints primaryKey="true" nullable="false"/>
+        </column>
+        <column name="nome" type="varchar(200)">
+            <constraints nullable="false"/>
+        </column>
+        <column name="email" type="varchar(100)">
+            <constraints nullable="false"/>
+        </column>
+        <column name="data_cadastro" type="date">
+            <constraints nullable="false"/>
+        </column>
+        <column name="telefone" type="varchar(11)">
+            <constraints nullable="false"/>
+        </column>
+    </createTable>
+    <sql>
+        ALTER TABLE usuario ADD CONSTRAINT validacao_telefone CHECK (LENGTH(telefone)=11)
+    </sql>
+    <createTable tableName="livro">
+        <column name="id" type="bigint" autoIncrement="true">
+            <constraints primaryKey="true" nullable="false"/>
+        </column>
+        <column name="titulo" type="varchar(200)">
+            <constraints nullable="false"/>
+        </column>
+        <column name="autor" type="varchar(200)">
+            <constraints nullable="false"/>
+        </column>
+        <column name="isbn" type="varchar(13)">
+            <constraints nullable="false" unique="true"/>
+        </column>
+        <column name="data_publicacao" type="date">
+            <constraints nullable="false"/>
+        </column>
+        <column name="categoria" type="varchar(100)">
+            <constraints nullable="false"/>
+        </column>
+    </createTable>
+    <sql>
+        ALTER TABLE livro ADD CONSTRAINT validacao_isbn CHECK (LENGTH(isbn)=13)
+    </sql>
+    <createTable tableName="emprestimo">
+        <column name="id" type="bigint" autoIncrement="true">
+            <constraints primaryKey="true" nullable="false"/>
+        </column>
+        <column name="usuario_id" type="bigint">
+            <constraints nullable="false" foreignKeyName="fk_id_usuario" references="usuario(id)"/>
+        </column>
+        <column name="livro_id" type="bigint">
+            <constraints nullable="false" foreignKeyName="fk_id_livro" references="livro(id)"/>
+        </column>
+        <column name="data_emprestimo" type="date">
+            <constraints nullable="false"/>
+        </column>
+        <column name="data_devolucao" type="date">
+            <constraints nullable="true"/>
+        </column>
+        <column name="status" type="varchar(50)">
+            <constraints nullable="false"/>
+        </column>
+    </createTable>
+    <sql>
+        <![CDATA[
+        ALTER TABLE emprestimo
+        ADD CONSTRAINT validacao_data_emprestimo
+        CHECK (data_emprestimo <= current_date)
+        ]]>
+    </sql>
+</changeSet>
+
+</databaseChangeLog>
