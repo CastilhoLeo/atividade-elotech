@@ -76,7 +76,6 @@ public class EmprestimoServiceTest {
         Usuario usuario = EntityBuilder.usuario();
         RequestEmprestimoDTO requestEmprestimoDTO = DTOBuilder.requestEmprestimoDTO();
         EmprestimoDTO emprestimoDTO = DTOBuilder.emprestimoDTO();
-        ;
         Emprestimo emprestimo1 = EntityBuilder.emprestimo();
         Emprestimo emprestimo2 = EntityBuilder.emprestimo();
         emprestimo2.setId(2L);

@@ -118,6 +118,7 @@ public class UsuarioServiceTest {
         usuarioService.atualizarUsuario(usuarioId, usuarioDTO);
 
         Mockito.verify(usuarioRepository, Mockito.times(1)).save(usuario);
+        Mockito.verify(usuarioRepository, Mockito.times(1)).findById(usuarioId);
         Assertions.assertEquals(usuario.getNome(), usuarioDTO.getNome());
         Assertions.assertEquals(usuario.getTelefone(), usuarioDTO.getTelefone());
         Assertions.assertEquals(usuario.getEmail(), usuarioDTO.getEmail());
