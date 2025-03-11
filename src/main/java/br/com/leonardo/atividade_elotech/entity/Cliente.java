@@ -18,9 +18,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
-@Table(name = "usuario")
+@Table(name = "cliente")
 @Check(constraints = "data_cadastro <= current_date")
-public class Usuario {
+public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,7 +42,7 @@ public class Usuario {
     @Size(min = 11, max = 11, message = "Numero de telefone inválido!")
     private String telefone;
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Emprestimo> emprestimo = new ArrayList<>();
 
 }

@@ -16,7 +16,7 @@ public class EmprestimoDTO {
 
     private long id;
 
-    private UsuarioDTO usuarioDTO;
+    private ClienteDTO clienteDTO;
 
     private LivroDTO livroDTO;
 

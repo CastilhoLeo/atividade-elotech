@@ -25,8 +25,8 @@ public class Emprestimo {
     private long id;
 
     @ManyToOne
-    @JoinColumn(name = "usuario_id", nullable = false)
-    private Usuario usuario;
+    @JoinColumn(name = "cliente_id", nullable = false)
+    private Cliente cliente;
 
     @ManyToOne
     @JoinColumn(name = "livro_id", nullable = false)

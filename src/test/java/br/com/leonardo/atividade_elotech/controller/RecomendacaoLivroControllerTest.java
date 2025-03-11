@@ -45,7 +45,7 @@ public class RecomendacaoLivroControllerTest {
         List<LivroDTO> recomendacoes = List.of(livroDTO1, livroDTO2);
 
 
-        Mockito.when(recomendacaoLivroService.recomendacoesDoUsuario(anyLong())).thenReturn(recomendacoes);
+        Mockito.when(recomendacaoLivroService.recomendacoesDocliente(anyLong())).thenReturn(recomendacoes);
 
 
         mockMvc.perform(get("/recomendacao/{id}", livroId))

@@ -1,8 +1,8 @@
 package br.com.leonardo.atividade_elotech.controller;
 
 import br.com.leonardo.atividade_elotech.builder.DTOBuilder;
-import br.com.leonardo.atividade_elotech.dto.UsuarioDTO;
-import br.com.leonardo.atividade_elotech.service.UsuarioService;
+import br.com.leonardo.atividade_elotech.dto.ClienteDTO;
+import br.com.leonardo.atividade_elotech.service.ClienteService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -24,29 +24,29 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @SpringBootTest
 @ActiveProfiles("test")
-public class UsuarioControllerTest {
+public class ClienteControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
-    private UsuarioService usuarioService;
+    private ClienteService clienteService;
 
     @Autowired
     private ObjectMapper objectMapper;
 
     @Test
-    public void cadastrarUsuario () throws Exception{
+    public void cadastrarcliente () throws Exception{
 
-        UsuarioDTO usuarioDTO = DTOBuilder.usuarioDTO();
-
-
-        Mockito.when(usuarioService.cadastrarUsuario(any(UsuarioDTO.class))).thenReturn(usuarioDTO);
+        ClienteDTO clienteDTO = DTOBuilder.clienteDTO();
 
 
-        mockMvc.perform(post("/usuario")
+        Mockito.when(clienteService.cadastrarcliente(any(ClienteDTO.class))).thenReturn(clienteDTO);
+
+
+        mockMvc.perform(post("/cliente")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(usuarioDTO)))
+                        .content(objectMapper.writeValueAsString(clienteDTO)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1L))
                 .andExpect(jsonPath("$.nome").value("Leonardo"))
@@ -59,14 +59,14 @@ public class UsuarioControllerTest {
     @Test
     public void localizarPeloId() throws Exception{
 
-        long usuarioId = 1L;
-        UsuarioDTO usuarioDTO = DTOBuilder.usuarioDTO();
+        long clienteId = 1L;
+        ClienteDTO clienteDTO = DTOBuilder.clienteDTO();
 
 
-        Mockito.when(usuarioService.localizarPeloId(anyLong())).thenReturn(usuarioDTO);
+        Mockito.when(clienteService.localizarPeloId(anyLong())).thenReturn(clienteDTO);
 
 
-        mockMvc.perform(get("/usuario/{id}", usuarioId))
+        mockMvc.perform(get("/cliente/{id}", clienteId))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1L))
@@ -78,27 +78,27 @@ public class UsuarioControllerTest {
 
 
     @Test
-    public void deletarUsuario() throws Exception{
+    public void deletarcliente() throws Exception{
 
-        long usuarioId = 1L;
+        long clienteId = 1L;
 
-        mockMvc.perform(delete("/usuario/{id}", usuarioId))
+        mockMvc.perform(delete("/cliente/{id}", clienteId))
                 .andExpect(status().isNoContent());
 
-        Mockito.verify(usuarioService, Mockito.times(1)).deletarUsuario(1L);
+        Mockito.verify(clienteService, Mockito.times(1)).deletarcliente(1L);
     }
 
 
     @Test
-    public void atualizarUsuario() throws Exception{
+    public void atualizarcliente() throws Exception{
 
-        long usuarioId = 1L;
-        UsuarioDTO usuarioDTO = DTOBuilder.usuarioDTO();
+        long clienteId = 1L;
+        ClienteDTO clienteDTO = DTOBuilder.clienteDTO();
 
-        Mockito.when(usuarioService.atualizarUsuario(anyLong(), any(UsuarioDTO.class))).thenReturn(usuarioDTO);
+        Mockito.when(clienteService.atualizarcliente(anyLong(), any(ClienteDTO.class))).thenReturn(clienteDTO);
 
-        mockMvc.perform(put("/usuario/{id}", usuarioId)
-                        .content(objectMapper.writeValueAsString(usuarioDTO))
+        mockMvc.perform(put("/cliente/{id}", clienteId)
+                        .content(objectMapper.writeValueAsString(clienteDTO))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1L))

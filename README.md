@@ -2,7 +2,7 @@
 
 
 <h2 align = 'center'>Api desenvolvida para desafio técnico da Elotech</h2>
-<p> Nesta aplicação será possível cadastrar usuarios, livros e empréstimos dos livros. Também há a funcionalidade de livros recomendados com base no histórico de emprestimos do usuário selecionado </p>
+<p> Nesta aplicação será possível cadastrar clientes, livros e empréstimos dos livros. Também há a funcionalidade de livros recomendados com base no histórico de emprestimos do usuário selecionado </p>
 
 <div align = 'center'>
 <h2 align ='center'>Configurações necessárias</h2>

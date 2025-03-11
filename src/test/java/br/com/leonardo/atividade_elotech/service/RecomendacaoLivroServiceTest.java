@@ -41,9 +41,9 @@ public class RecomendacaoLivroServiceTest {
 
 
     @Test
-    public void recomendacoesDoUsuario_DeveRetornarUmListComOsLivrosDeCategoriaAventura(){
+    public void recomendacoesDocliente_DeveRetornarUmListComOsLivrosDeCategoriaAventura(){
 
-        long usuarioId = 1l;
+        long clienteId = 1l;
 
         //Emprestimos já feitos pelo cliente -> Livro de id 1 e categoria AVENTURA
         List<Emprestimo> emprestimos = new ArrayList<>(List.of(EntityBuilder.emprestimo()));
@@ -63,12 +63,12 @@ public class RecomendacaoLivroServiceTest {
         livroDto3.setId(3L);
 
 
-        Mockito.when(emprestimoRepository.findByUsuarioId(anyLong())).thenReturn(emprestimos);
+        Mockito.when(emprestimoRepository.findByclienteId(anyLong())).thenReturn(emprestimos);
         Mockito.when(livroRepository.findByCategoriaIn(anyList())).thenReturn(livrosDaCategoria);
         Mockito.when(livroConverter.toDto(livro2)).thenReturn(livroDto2);
         Mockito.when(livroConverter.toDto(livro3)).thenReturn(livroDto3);
 
-        List<LivroDTO> resultado = recomendacaoLivroService.recomendacoesDoUsuario(usuarioId);
+        List<LivroDTO> resultado = recomendacaoLivroService.recomendacoesDocliente(clienteId);
 
         Assertions.assertNotNull(resultado);
         Assertions.assertEquals(resultado, List.of(livroDto2, livroDto3));

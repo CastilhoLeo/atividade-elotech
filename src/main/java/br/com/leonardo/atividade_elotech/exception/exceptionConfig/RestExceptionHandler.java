@@ -15,14 +15,14 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(UsuarioNaoEncontradoException.class)
-    public ResponseEntity<ErrorMessage> usuarioNaoEncontrado(UsuarioNaoEncontradoException usuarioNaoEcontradoException){
-        ErrorMessage errorMessage = new ErrorMessage(HttpStatus.NOT_FOUND, usuarioNaoEcontradoException.getMessage());
+    @ExceptionHandler(ClienteNaoEncontradoException.class)
+    public ResponseEntity<ErrorMessage> clienteNaoEncontrado(ClienteNaoEncontradoException clienteNaoEcontradoException){
+        ErrorMessage errorMessage = new ErrorMessage(HttpStatus.NOT_FOUND, clienteNaoEcontradoException.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
     }
 
     @ExceptionHandler(LivroNaoEncontradoException.class)
-    public ResponseEntity<ErrorMessage> usuarioNaoEncontrado(LivroNaoEncontradoException livroNaoEcontradoException){
+    public ResponseEntity<ErrorMessage> clienteNaoEncontrado(LivroNaoEncontradoException livroNaoEcontradoException){
         ErrorMessage errorMessage = new ErrorMessage(HttpStatus.NOT_FOUND, livroNaoEcontradoException.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
     }

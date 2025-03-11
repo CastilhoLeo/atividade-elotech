@@ -28,11 +28,11 @@ public class EmprestimoController {
 
     @GetMapping
     public ResponseEntity<Page<EmprestimoDTO>> pesquisarEmprestimo(
-            @RequestParam (required = false)String usuario,
+            @RequestParam (required = false)String cliente,
             @RequestParam (required = false)String titulo,
             Pageable pageable){
 
-        return ResponseEntity.ok().body(emprestimoService.pesquisaDinamicaEmprestimo(usuario, titulo, pageable));
+        return ResponseEntity.ok().body(emprestimoService.pesquisaDinamicaEmprestimo(cliente, titulo, pageable));
     }
 
 

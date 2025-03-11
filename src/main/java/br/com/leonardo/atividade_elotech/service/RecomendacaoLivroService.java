@@ -32,19 +32,19 @@ public class RecomendacaoLivroService {
     /**
      * Método que retorna a recomendação de livros para o usuário com base nas categorias já alugadas anteriormente
      * e excluindo os livros já alugados
-     * @param usuarioId
+     * @param clienteId
      * @return
      */
 
-    public List<LivroDTO> recomendacoesDoUsuario(Long usuarioId){
+    public List<LivroDTO> recomendacoesDocliente(Long clienteId){
 
-        List<Emprestimo> emprestimosDoUsuario = emprestimoRepository.findByUsuarioId(usuarioId);
+        List<Emprestimo> emprestimosDocliente = emprestimoRepository.findByclienteId(clienteId);
 
-        List<Livro> livrosDoUsuario = emprestimosDoUsuario  //Livros que o usuário já emprestou
+        List<Livro> livrosDocliente = emprestimosDocliente  //Livros que o usuário já emprestou
                 .stream()
                 .map(e->e.getLivro()).toList();
 
-        List<Categoria> categorias = livrosDoUsuario  // Cria um list das categorias já alugados pelo usuário
+        List<Categoria> categorias = livrosDocliente  // Cria um list das categorias já alugados pelo usuário
                 .stream()
                 .map(e->e.getCategoria())
                 .distinct()
@@ -53,7 +53,7 @@ public class RecomendacaoLivroService {
         List<Livro> livrosRecomendados = livrosDaCategoria(categorias); // Busca no BD somente livros com categorias do usuário
 
         // Exclui do resultado os livros já emprestados pelo usuário
-        List<Livro> livrosRecomendadosFiltrado = retiraLivrosJaEmprestados(livrosDoUsuario, livrosRecomendados);
+        List<Livro> livrosRecomendadosFiltrado = retiraLivrosJaEmprestados(livrosDocliente, livrosRecomendados);
 
         return livrosRecomendadosFiltrado.stream().map(l->livroConverter.toDto(l)).toList();
     }
@@ -72,14 +72,14 @@ public class RecomendacaoLivroService {
 
     /**
      * Método exclui da lista de livros recomendados os livros já emprestados anteriormente pelo usuário
-     * @param livrosDoUsuario
+     * @param livrosDocliente
      * @param livrosRecomendados
      * @return
      */
 
-    private List<Livro> retiraLivrosJaEmprestados(List<Livro> livrosDoUsuario, List<Livro> livrosRecomendados){
+    private List<Livro> retiraLivrosJaEmprestados(List<Livro> livrosDocliente, List<Livro> livrosRecomendados){
 
-        livrosRecomendados.removeAll(livrosDoUsuario);
+        livrosRecomendados.removeAll(livrosDocliente);
 
         return livrosRecomendados;
     }

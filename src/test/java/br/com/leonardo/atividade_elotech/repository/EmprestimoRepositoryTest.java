@@ -17,11 +17,11 @@ public class EmprestimoRepositoryTest {
     private EmprestimoRepository emprestimoRepository;
 
     @Test
-    public void findByUsuarioId_DeveRetornarTodosEmprestimosDoUsuarioBuscadoPeloId(){
+    public void findByclienteId_DeveRetornarTodosEmprestimosDoclienteBuscadoPeloId(){
 
-        long usuarioId = 1L;
+        long clienteId = 1L;
 
-        List<Emprestimo> emprestimos = emprestimoRepository.findByUsuarioId(usuarioId);
+        List<Emprestimo> emprestimos = emprestimoRepository.findByclienteId(clienteId);
 
         Assertions.assertNotNull(emprestimos);
         Assertions.assertEquals(List.of(1L,2L,3L), emprestimos.stream().map(e->e.getId()).toList());
@@ -29,11 +29,11 @@ public class EmprestimoRepositoryTest {
     }
 
     @Test
-    public void findByUsuarioId_DeveRetornarListVazioDoUsuarioQueNaoTemEmprestimo(){
+    public void findByclienteId_DeveRetornarListVazioDoclienteQueNaoTemEmprestimo(){
 
-        long usuarioId = 4L;
+        long clienteId = 4L;
 
-        List<Emprestimo> emprestimos = emprestimoRepository.findByUsuarioId(usuarioId);
+        List<Emprestimo> emprestimos = emprestimoRepository.findByclienteId(clienteId);
 
         Assertions.assertNotNull(emprestimos);
         Assertions.assertEquals(List.of(), emprestimos.stream().map(e->e.getId()).toList());

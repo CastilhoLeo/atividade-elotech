@@ -8,12 +8,12 @@ import br.com.leonardo.atividade_elotech.dto.RequestDevolucaoDTO;
 import br.com.leonardo.atividade_elotech.dto.RequestEmprestimoDTO;
 import br.com.leonardo.atividade_elotech.entity.Emprestimo;
 import br.com.leonardo.atividade_elotech.entity.Livro;
-import br.com.leonardo.atividade_elotech.entity.Usuario;
+import br.com.leonardo.atividade_elotech.entity.Cliente;
 import br.com.leonardo.atividade_elotech.enums.Status;
 import br.com.leonardo.atividade_elotech.exception.*;
 import br.com.leonardo.atividade_elotech.repository.EmprestimoRepository;
 import br.com.leonardo.atividade_elotech.repository.LivroRepository;
-import br.com.leonardo.atividade_elotech.repository.UsuarioRepository;
+import br.com.leonardo.atividade_elotech.repository.ClienteRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -44,7 +44,7 @@ public class EmprestimoServiceTest {
     private LivroRepository livroRepository;
 
     @Mock
-    private UsuarioRepository usuarioRepository;
+    private ClienteRepository clienteRepository;
 
     @InjectMocks
     private EmprestimoService emprestimoService;
@@ -73,7 +73,7 @@ public class EmprestimoServiceTest {
     public void cadastrarEmprestimo_deveRetornarUmEmprestimoSalvo() {
 
         Livro livro = EntityBuilder.livro();
-        Usuario usuario = EntityBuilder.usuario();
+        Cliente cliente = EntityBuilder.cliente();
         RequestEmprestimoDTO requestEmprestimoDTO = DTOBuilder.requestEmprestimoDTO();
         EmprestimoDTO emprestimoDTO = DTOBuilder.emprestimoDTO();
         Emprestimo emprestimo1 = EntityBuilder.emprestimo();
@@ -85,7 +85,7 @@ public class EmprestimoServiceTest {
 
 
         Mockito.when(livroRepository.findById(anyLong())).thenReturn(Optional.of(livro));
-        Mockito.when(usuarioRepository.findById(anyLong())).thenReturn(Optional.of(usuario));
+        Mockito.when(clienteRepository.findById(anyLong())).thenReturn(Optional.of(cliente));
         Mockito.when(emprestimoConverter.toDto(any(Emprestimo.class))).thenReturn(emprestimoDTO);
         Mockito.when(emprestimoRepository.save(any(Emprestimo.class))).thenReturn(emprestimo1);
         Mockito.when(emprestimoRepository.findByLivroId(anyLong())).thenReturn(emprestimos);
@@ -100,7 +100,7 @@ public class EmprestimoServiceTest {
         Mockito.verify(emprestimoRepository, Mockito.times(1)).save(emprestimoCaptor.capture());
         Assertions.assertNotNull(emprestimoCaptor.getValue());
         Assertions.assertEquals(emprestimoCaptor.getValue().getLivro(), livro);
-        Assertions.assertEquals(emprestimoCaptor.getValue().getUsuario(), usuario);
+        Assertions.assertEquals(emprestimoCaptor.getValue().getcliente(), cliente);
         Assertions.assertEquals(emprestimoCaptor.getValue().getDataEmprestimo(), LocalDate.of(2024, 11, 9));
         Assertions.assertEquals(emprestimoCaptor.getValue().getDataDevolucao(), null);
         Assertions.assertEquals(emprestimoCaptor.getValue().getStatus(), Status.EMPRESTADO);
@@ -122,18 +122,18 @@ public class EmprestimoServiceTest {
     }
 
     @Test
-    public void cadastrarEmprestimo_deveRetornarUsuarioNaoEncontradoException() {
+    public void cadastrarEmprestimo_deveRetornarclienteNaoEncontradoException() {
 
         Livro livro = EntityBuilder.livro();
         RequestEmprestimoDTO requestEmprestimoDTO = DTOBuilder.requestEmprestimoDTO();
 
         Mockito.when(livroRepository.findById(anyLong())).thenReturn(Optional.of(livro));
-        Mockito.when(usuarioRepository.findById(anyLong())).thenReturn(Optional.empty());
+        Mockito.when(clienteRepository.findById(anyLong())).thenReturn(Optional.empty());
 
 
-        Assertions.assertThrows(UsuarioNaoEncontradoException.class,
+        Assertions.assertThrows(ClienteNaoEncontradoException.class,
                 () -> emprestimoService.cadastrarEmprestimo(requestEmprestimoDTO));
-        Mockito.verify(usuarioRepository, Mockito.times(1)).findById(1L);
+        Mockito.verify(clienteRepository, Mockito.times(1)).findById(1L);
     }
 
 

@@ -1,8 +1,6 @@
 package br.com.leonardo.atividade_elotech.builder;
 
 import br.com.leonardo.atividade_elotech.dto.*;
-import br.com.leonardo.atividade_elotech.entity.Emprestimo;
-import br.com.leonardo.atividade_elotech.entity.Livro;
 import br.com.leonardo.atividade_elotech.enums.Categoria;
 import br.com.leonardo.atividade_elotech.enums.Status;
 
@@ -13,9 +11,9 @@ import java.time.LocalDate;
  */
 public class DTOBuilder {
 
-    public static UsuarioDTO usuarioDTO(){
+    public static ClienteDTO clienteDTO(){
 
-        return new UsuarioDTO(
+        return new ClienteDTO(
                 1L,
                 "Leonardo",
                 "leonardo@email.com",
@@ -38,7 +36,7 @@ public class DTOBuilder {
 
         return new EmprestimoDTO(
                 1L,
-                DTOBuilder.usuarioDTO(),
+                DTOBuilder.clienteDTO(),
                 DTOBuilder.livroDTO(),
                 LocalDate.of(2024,11,9),
                 LocalDate.of(2024,11,10),

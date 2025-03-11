@@ -2,16 +2,15 @@ package br.com.leonardo.atividade_elotech.service;
 
 import br.com.leonardo.atividade_elotech.converter.EmprestimoConverter;
 import br.com.leonardo.atividade_elotech.dto.EmprestimoDTO;
-import br.com.leonardo.atividade_elotech.dto.RequestDevolucaoDTO;
 import br.com.leonardo.atividade_elotech.dto.RequestEmprestimoDTO;
 import br.com.leonardo.atividade_elotech.entity.Emprestimo;
 import br.com.leonardo.atividade_elotech.entity.Livro;
-import br.com.leonardo.atividade_elotech.entity.Usuario;
+import br.com.leonardo.atividade_elotech.entity.Cliente;
 import br.com.leonardo.atividade_elotech.enums.Status;
 import br.com.leonardo.atividade_elotech.exception.*;
 import br.com.leonardo.atividade_elotech.repository.EmprestimoRepository;
 import br.com.leonardo.atividade_elotech.repository.LivroRepository;
-import br.com.leonardo.atividade_elotech.repository.UsuarioRepository;
+import br.com.leonardo.atividade_elotech.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,7 +26,7 @@ import java.util.List;
 public class EmprestimoService {
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private ClienteRepository clienteRepository;
 
     @Autowired
     private LivroRepository livroRepository;
@@ -46,8 +45,8 @@ public class EmprestimoService {
         return todosEmprestimos.map(e->emprestimoConverter.toDto(e));
     }
 
-    public Page<EmprestimoDTO> pesquisaDinamicaEmprestimo(String usuario, String titulo, Pageable pageable){
-        Page<Emprestimo> emprestimos =  emprestimoRepository.findByUsuarioNomeContainingOrLivroTituloContaining(usuario, titulo, pageable);
+    public Page<EmprestimoDTO> pesquisaDinamicaEmprestimo(String cliente, String titulo, Pageable pageable){
+        Page<Emprestimo> emprestimos =  emprestimoRepository.findByclienteNomeContainingOrLivroTituloContaining(cliente, titulo, pageable);
         return emprestimos.map(e->emprestimoConverter.toDto(e));
     }
 
@@ -59,13 +58,13 @@ public class EmprestimoService {
             Livro livro = livroRepository.findById(request.getLivroId())
                     .orElseThrow(() -> new LivroNaoEncontradoException());
 
-            Usuario usuario = usuarioRepository.findById(request.getUsuarioId())
-                    .orElseThrow(() -> new UsuarioNaoEncontradoException());
+            Cliente cliente = clienteRepository.findById(request.getClienteId())
+                    .orElseThrow(() -> new ClienteNaoEncontradoException());
 
             Emprestimo emprestimo = new Emprestimo();
 
             emprestimo.setDataEmprestimo(request.getDataEmprestimo());
-            emprestimo.setUsuario(usuario);
+            emprestimo.setCliente(cliente);
             emprestimo.setLivro(livro);
             emprestimo.setStatus(Status.EMPRESTADO);
 

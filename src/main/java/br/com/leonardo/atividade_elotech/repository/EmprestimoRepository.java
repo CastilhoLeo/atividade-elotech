@@ -11,11 +11,11 @@ import java.util.List;
 @Repository
 public interface EmprestimoRepository extends JpaRepository<Emprestimo, Long> {
 
-    List<Emprestimo> findByUsuarioId(Long id);
+    List<Emprestimo> findByclienteId(Long id);
 
     List<Emprestimo> findByLivroId(Long id);
 
-    Page<Emprestimo> findByUsuarioNomeContainingOrLivroTituloContaining(String nome, String titulo, Pageable pageable);
+    Page<Emprestimo> findByclienteNomeContainingOrLivroTituloContaining(String nome, String titulo, Pageable pageable);
 
 
 }

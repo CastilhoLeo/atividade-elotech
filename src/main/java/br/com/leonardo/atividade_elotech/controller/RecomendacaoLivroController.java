@@ -24,8 +24,8 @@ public class RecomendacaoLivroController {
     @Autowired
     private RecomendacaoLivroService recomendacaoLivroService;
 
-    @GetMapping("/{usuarioId}")
-    public ResponseEntity<List<LivroDTO>> recomendacaoLivro(@PathVariable Long usuarioId){
-        return ResponseEntity.ok().body(recomendacaoLivroService.recomendacoesDoUsuario(usuarioId));
+    @GetMapping("/{clienteId}")
+    public ResponseEntity<List<LivroDTO>> recomendacaoLivro(@PathVariable Long clienteId){
+        return ResponseEntity.ok().body(recomendacaoLivroService.recomendacoesDocliente(clienteId));
     }
 }

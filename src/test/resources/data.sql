@@ -1,4 +1,4 @@
-INSERT INTO usuario(
+INSERT INTO cliente(
 	data_cadastro, telefone, email, nome)
 	VALUES ('2024-11-09', '44998240563', 'leonardo@email.com', 'Leonardo'),
 	('2024-11-09', '44988745487', 'joao@email.com', 'Joao'),
@@ -19,7 +19,7 @@ INSERT INTO livro(
 	('2024-10-15', 'Autor 10', 'FICCAO', '1012345678912', 'Livro 10');
 
 INSERT INTO emprestimo(
-	data_devolucao, data_emprestimo, livro_id, usuario_id, status)
+	data_devolucao, data_emprestimo, livro_id, cliente_id, status)
 	VALUES 	('2024-11-09', '2024-10-09', 1, 1, 'DEVOLVIDO'),
 	('2024-11-09', '2024-10-09', 2, 1, 'DEVOLVIDO'),
 	('2024-11-09', '2024-10-09', 3, 1, 'DEVOLVIDO'),

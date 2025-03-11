@@ -2,7 +2,7 @@ package br.com.leonardo.atividade_elotech.builder;
 
 import br.com.leonardo.atividade_elotech.entity.Emprestimo;
 import br.com.leonardo.atividade_elotech.entity.Livro;
-import br.com.leonardo.atividade_elotech.entity.Usuario;
+import br.com.leonardo.atividade_elotech.entity.Cliente;
 import br.com.leonardo.atividade_elotech.enums.Categoria;
 import br.com.leonardo.atividade_elotech.enums.Status;
 
@@ -15,9 +15,9 @@ import java.util.List;
  */
 public class EntityBuilder {
 
-    public static Usuario usuario(){
+    public static Cliente cliente(){
 
-        return new Usuario(
+        return new Cliente(
                 1L,
                 "Leonardo",
                 "Leonardo@email.com",
@@ -44,7 +44,7 @@ public class EntityBuilder {
     public static Emprestimo emprestimo(){
         return new Emprestimo(
                 1L,
-                EntityBuilder.usuario(),
+                EntityBuilder.cliente(),
                 EntityBuilder.livro(),
                 LocalDate.of(2024,11,9),
                 null,

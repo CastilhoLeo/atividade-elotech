@@ -18,7 +18,7 @@ public class RequestEmprestimoDTO {
 
     private long livroId;
 
-    private long usuarioId;
+    private long clienteId;
 
     private LocalDate dataEmprestimo;
 }
