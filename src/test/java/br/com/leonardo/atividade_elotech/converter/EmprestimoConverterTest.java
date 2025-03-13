@@ -29,7 +29,7 @@ public class EmprestimoConverterTest {
         Assertions.assertEquals(EmprestimoDTO.class, emprestimoDTO.getClass());
         Assertions.assertEquals(emprestimo.getId(), emprestimoDTO.getId());
         Assertions.assertEquals(emprestimoDTO.getLivroDTO(), DTOBuilder.livroDTO());
-        Assertions.assertEquals(emprestimoDTO.getclienteDTO(), DTOBuilder.clienteDTO());
+        Assertions.assertEquals(emprestimoDTO.getClienteDTO(), DTOBuilder.clienteDTO());
         Assertions.assertEquals(emprestimo.getDataEmprestimo(), emprestimoDTO.getDataEmprestimo());
         Assertions.assertEquals(emprestimo.getDataDevolucao(), emprestimoDTO.getDataDevolucao());
 
@@ -47,7 +47,7 @@ public class EmprestimoConverterTest {
         Assertions.assertEquals(Emprestimo.class, emprestimo.getClass());
         Assertions.assertEquals(emprestimo.getId(), emprestimoDTO.getId());
         Assertions.assertEquals(emprestimoDTO.getLivroDTO(), DTOBuilder.livroDTO());
-        Assertions.assertEquals(emprestimoDTO.getclienteDTO(), DTOBuilder.clienteDTO());
+        Assertions.assertEquals(emprestimoDTO.getClienteDTO(), DTOBuilder.clienteDTO());
         Assertions.assertEquals(emprestimo.getDataEmprestimo(), emprestimoDTO.getDataEmprestimo());
         Assertions.assertEquals(emprestimo.getDataDevolucao(), emprestimoDTO.getDataDevolucao());
         Assertions.assertEquals(emprestimo.getStatus(), Status.EMPRESTADO);

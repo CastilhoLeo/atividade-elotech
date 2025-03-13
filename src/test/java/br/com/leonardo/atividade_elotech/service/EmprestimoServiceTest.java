@@ -100,7 +100,7 @@ public class EmprestimoServiceTest {
         Mockito.verify(emprestimoRepository, Mockito.times(1)).save(emprestimoCaptor.capture());
         Assertions.assertNotNull(emprestimoCaptor.getValue());
         Assertions.assertEquals(emprestimoCaptor.getValue().getLivro(), livro);
-        Assertions.assertEquals(emprestimoCaptor.getValue().getcliente(), cliente);
+        Assertions.assertEquals(emprestimoCaptor.getValue().getCliente(), cliente);
         Assertions.assertEquals(emprestimoCaptor.getValue().getDataEmprestimo(), LocalDate.of(2024, 11, 9));
         Assertions.assertEquals(emprestimoCaptor.getValue().getDataDevolucao(), null);
         Assertions.assertEquals(emprestimoCaptor.getValue().getStatus(), Status.EMPRESTADO);
