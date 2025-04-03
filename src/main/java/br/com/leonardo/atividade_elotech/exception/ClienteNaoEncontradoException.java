@@ -3,7 +3,7 @@ package br.com.leonardo.atividade_elotech.exception;
 public class ClienteNaoEncontradoException extends RuntimeException{
 
     public ClienteNaoEncontradoException(){
-        super("Usuário não encontrado!");
+        super("Cliente não encontrado!");
     }
 
     public ClienteNaoEncontradoException(String message){
